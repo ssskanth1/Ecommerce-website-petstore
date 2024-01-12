@@ -3,11 +3,11 @@ const router=express();
 const {loginAdmin, adminDashboard,adminVerifyLogin, userField, blockUser, unblockUser,logout}=require('../controllers/adminctrl');
 const { allCategory,addCategory,editCategory, deleteCategory,updateCategory,unlistCategory, listCategory } = require("../controllers/categoryctrl");
 const {allProducts,addProduct,createProduct,editProduct,productEdited,unlistProduct,listProduct,deleteProduct,deleteSingleImage}=require("../controllers/productCtrl");
-const {adminOrderDetails,changeStatusPending,changeStatusConfirmed,changeStatusShipped,changeStatusCanceled,changeStatusDelivered,changeStatusReturned, adminOrderList,loadsalesReport,salesReport}=require('../controllers/orderCtrl');
+const {adminOrderDetails,changeStatusPending,changeStatusConfirmed,changeStatusShipped,changeStatusCanceled,changeStatusDelivered,changeStatusReturned,changeStatusReturnRejected, adminOrderList,loadsalesReport,salesReport}=require('../controllers/orderCtrl');
 const {loadCoupon,addCoupon,coupon,editCoupon,deleteCoupon,updateCoupon}=require('../controllers/couponCtrl')
 const{productOfferpage,updateOffer,categoryOffer,updateCategoryOffer}=require('../controllers/offerCtrl')
 const {banner,addNewBanner,createBanner,editBanner,updateBanner,deleteBanner}=require('../controllers/bannerCtrl');
-
+ 
 
 router.set('view engine','ejs'); 
 router.set('views','./views/admin');
@@ -68,6 +68,7 @@ router.get('/changeStatusShipped',changeStatusShipped);
 router.get('/changeStatusCanceled',changeStatusCanceled);
 router.get('/changeStatusdelivered',changeStatusDelivered);
 router.get('/changeStatusReturned',changeStatusReturned);
+router.get('/changeStatusReturnRejected',changeStatusReturnRejected);  
 
 //coupen route------------------------------------------------------------------------------
 

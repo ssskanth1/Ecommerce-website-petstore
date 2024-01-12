@@ -40,6 +40,10 @@ var orderSchema = new mongoose.Schema({
     address:{
         type:Array,
         required:true
+    },
+    returnreason:{
+        type:String,
+        default:''
     }
     
 });

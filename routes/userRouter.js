@@ -87,7 +87,7 @@ router.get('/orderDetails',isLogged,orderDetails);
 router.get('/orderPage',isLogged,orderPage);
 router.get('/allOrderDetails',isLogged,allOrderDetails);
 router.get('/cancelOrder',isLogged,cancelOrder);
-router.get('/return',isLogged,returnOrder);
+router.post('/return',isLogged,returnOrder);
 router.post('/verifyPayment',isLogged,verifyPayment)
 
 

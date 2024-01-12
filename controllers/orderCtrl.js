@@ -473,68 +473,63 @@ const cancelOrder = asyncHandler(async (req, res) => {
   
   const returnOrder = asyncHandler(async (req, res) => {
     try {
-        const orderId = req.query.orderId;
-        const productIdToReturn = req.query.productId; // Assuming you pass productId as a query parameter
-        const userId = req.session.user;
+      const orderId = req.body.orderId;
+      console.log(req.body.orderId)
+      const userId = req.session.user;
+      const returnReason = req.body.returnReason;
+      console.log(returnReason);
+      const user = await User.findOne({ _id: userId });
+      
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+     
+      const rorder = await Order.findOne({_id:orderId})
+      console.log(rorder);
+      const order = await Order.findByIdAndUpdate(orderId, {
+        status: 'returnrequested', returnreason:returnReason
+      }, { new: true });
+      console.log('order');
+      console.log(rorder);
+      if (!order) {
+        return res.status(404).json({ message: 'Order not found' });
+      }
 
-        const user = await User.findOne({ _id: userId });
+      user.wallet += order.totalPrice;
 
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
 
-        const order = await Order.findById(orderId);
-
-        if (!order) {
-            return res.status(404).json({ message: 'Order not found' });
-        }
-
-        // Find the specific product in the order
-        const productDataToReturn = order.product.find(product => product.ProductId.toString() === productIdToReturn);
-
-        if (!productDataToReturn) {
-            return res.status(404).json({ message: 'Product not found in the order' });
-        }
-
-        const productId = productDataToReturn.ProductId;
-        const quantity = productDataToReturn.quantity;
-
+      const transaction = {
+        amount: user.wallet ,
+        status: "credit",
+        timestamp: new Date(), // You can add a timestamp to the transaction
+    };
+    
+    user.history.push(transaction);
+      await user.save();
+  
+  
+  
+      for (const productData of order.product) {
+        const productId = productData.ProductId;
+        const quantity = productData.quantity;
+  
         // Find the corresponding product in the database
         const product = await Product.findById(productId);
-
+  
         if (product) {
-            // Increase the quantity of the specific product being returned
-            product.quantity += quantity;
-            await product.save();
+          product.quantity += quantity;
+          await product.save();
         }
-
-        // Remove the specific product from the order
-        order.product = order.product.filter(product => product.ProductId.toString() !== productIdToReturn);
-
-        // Update the status of the specific product to 'returned'
-        productDataToReturn.status = 'returned';
-
-        await order.save();
-
-        // Update user's wallet and history
-        user.wallet += productDataToReturn.price * quantity;
-
-        const transaction = {
-            amount: productDataToReturn.price * quantity,
-            status: 'credit',
-            timestamp: new Date(),
-        };
-
-        user.history.push(transaction);
-        await user.save();
-
-        res.redirect('/allOrderDetails');
+      }
+  
+      // res.redirect('/allOrderDetails');
+      return res.json({status:true});
     } catch (error) {
-        console.log('Error occurred in returnOrder function:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+      console.log('Error occurred in returnOrder function:', error);
+     
+      res.status(500).json({ message: 'Internal Server Error' });
     }
-});
-
+  });
 
 //================================admin side===========================================================================
 
@@ -664,6 +659,22 @@ const changeStatusReturned=asyncHandler(async(req,res)=>{
   try {
     const orderId=req.query.orderId;
     const order=await Order.findByIdAndUpdate(orderId,{status:'returned'},{new:true});
+    if(order)
+    {
+      res.json({status:true});
+    }
+
+  } catch (error) {
+    console.log("error in changestatusPending function",error);
+  }
+});
+
+//change status reject return------------------------------------------------------------
+
+const changeStatusReturnRejected=asyncHandler(async(req,res)=>{
+  try {
+    const orderId=req.query.orderId;
+    const order=await Order.findByIdAndUpdate(orderId,{status:'returnreject'},{new:true});
     if(order)
     {
       res.json({status:true});
@@ -1523,6 +1534,7 @@ module.exports={
     changeStatusCanceled,
     changeStatusDelivered,
     changeStatusReturned,
+    changeStatusReturnRejected,
     useWallet,
   
   verifyPayment,

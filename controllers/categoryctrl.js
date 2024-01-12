@@ -166,54 +166,76 @@ const editCategory=asyncHandler(async(req,res)=>{
 //     }
 
 // });
-const updateCategory=asyncHandler(async(req,res)=>{
-    try {
-        console.log('thisis body',req.body);
-        const {name,description}=req.body;
-        const id = req.body.id;
-        const img = req.file ? req.file.filename : null;
+// const updateCategory=asyncHandler(async(req,res)=>{
+//     try {
+//         console.log('thisis body',req.body);
+//         const {name,description}=req.body;
+//         const id = req.body.id;
+//         const img = req.file ? req.file.filename : null;
 
 
-        const categoryExist=await Category.findOne({name});
-        if(categoryExist)
-        {
-           res.redirect('/admin/category');
-        }else{
-            const caseInsensitiveCategoryExist = await Category.findOne({
-                name: { $regex: new RegExp('^' + name + '$', 'i') }
-            });
+//         const categoryExist=await Category.findOne({name});
+//         if(categoryExist)
+//         {
+//            res.redirect('/admin/category');
+//         }else{
+//             const caseInsensitiveCategoryExist = await Category.findOne({
+//                 name: { $regex: new RegExp('^' + name + '$', 'i') }
+//             });
     
-            if (caseInsensitiveCategoryExist) {
+//             if (caseInsensitiveCategoryExist) {
                 
-                res.redirect('/admin/category');
-            }
+//                 res.redirect('/admin/category');
+//             }
     
 
 
-            let updateData = {
-                name: req.body.name,
-                description: req.body.description  
-            };
+//             let updateData = {
+//                 name: req.body.name,
+//                 description: req.body.description  
+//             };
 
             
-        if (img) {
-            updateData.image = img;
-        }
+//         if (img) {
+//             updateData.image = img;
+//         }
 
 
 
-        console.log('this is data',updateData);
+//         console.log('this is data',updateData);
 
-       const a= await Category.findByIdAndUpdate(id,updateData);  
-console.log('this is the updatedcategory',a);
-        res.redirect('/admin/category');
+//        const a= await Category.findByIdAndUpdate(id,updateData);  
+// console.log('this is the updatedcategory',a);
+//         res.redirect('/admin/category');
 
-        }
+//         }
 
         
 
 
 
+//     } catch (error) {
+//         console.log("update category error");
+//     }
+
+// });
+const updateCategory=asyncHandler(async(req,res)=>{
+    try {
+        const id = req.body.id;
+        const img = req.file ? req.file.filename : null;
+
+        let updateData = {
+            name: req.body.name,
+            description: req.body.description  
+        };
+
+        if (img) {
+            updateData.image = img;
+        }
+
+        await Category.findByIdAndUpdate(id, updateData, { new: true });  // Corrected model name
+
+        res.redirect('/admin/category');
     } catch (error) {
         console.log("update category error");
     }

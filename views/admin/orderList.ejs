@@ -88,30 +88,31 @@
                                 </table>
                             </div> <!-- table-responsive //end -->
                         </div> <!-- card-body end// -->
+                        <% if (totalpages) { %>
+                            <div class="pagination justify-content-center">
+                              <% if (currentpage > 1) { %>
+                                <button class="btn btn-sm" "><a href="/admin/adminOrderList?page=<%= currentpage - 1 %>">Previous</a></button>
+                              <% } %>
+                          
+                              <% for (let i = 1; i <= totalpages; i++) { %> <!-- Change the loop to start from 1 and go up to totalpages -->
+                                <button class="btn btn-sm" "><a href="/admin/adminOrderList?page=<%= i %>" class="<%= i === currentpage ? 'active' : '' %>"><%= i %></a></button>
+                              <% } %>
+                          
+                              <% if (currentpage < totalpages) { %>
+                                <button class="btn btn-sm" ><a href="/admin/adminOrderList?page=<%= currentpage + 1 %>">Next</a></button>
+                              <% } %>
+                            </div>
+                          <% } %>
+                       
                     </div> <!-- card end// -->
-                    <% if (totalpages) { %>
-                        <div class="pagination justify-content-center">
-                          <% if (currentpage > 1) { %>
-                            <button class="btn btn-sm" "><a href="/admin/adminOrderList?page=<%= currentpage - 1 %>">Previous</a></button>
-                          <% } %>
-                      
-                          <% for (let i = 1; i <= totalpages; i++) { %> <!-- Change the loop to start from 1 and go up to totalpages -->
-                            <button class="btn btn-sm" "><a href="/admin/adminOrderList?page=<%= i %>" class="<%= i === currentpage ? 'active' : '' %>"><%= i %></a></button>
-                          <% } %>
-                      
-                          <% if (currentpage < totalpages) { %>
-                            <button class="btn btn-sm" ><a href="/admin/adminOrderList?page=<%= currentpage + 1 %>">Next</a></button>
-                          <% } %>
-                        </div>
-                      <% } %>
+                   
                 </div>
-                <div class="col-md-3">
-                    
-                    
-                </div>
+               
+                
               
             </div>
            
         </section> <!-- content-main end// -->
+        
         <%- include('footer') %>
         

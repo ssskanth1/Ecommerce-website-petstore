@@ -75,7 +75,7 @@ const Category=require('../model/categoryModel')
 
 //     } catch (error) {
 //         console.log('Error happened in admin controller at adminLoginPage function ', error);
-//     }
+//     }                 
 // });
 const adminDashboard = asyncHandler(async (req, res) => {
     try {
@@ -288,6 +288,7 @@ console.log('thsi is customDateSalesArray',customDateSalesArray);
 
     }
 })
+
 
 
 
