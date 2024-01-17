@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express()
 const {upload}=require('../multer/multer');
 const auth = require('../middleware/userAuth');
 const{getCart,addToCart,deleteCartItem,deleteCart,modifyCartQuantity}=require("../controllers/cartCtrl");
@@ -24,7 +24,6 @@ const {
 } = require('../controllers/userctrl');
 
 const { isLogged} = require('../middleware/userAuth')
-
 const {checkOut,orderPlaced,orderDetails,orderPage,allOrderDetails,cancelOrder,returnOrder,useWallet,verifyPayment}=require('../controllers/orderCtrl');
 
 const {productSearch,CategoryFilter,filterSearch,colorFilter,priceFilter,brandFilter,clearFilter,sortByPrice,sizeFilter}=require('../controllers/filterCtrl');
@@ -33,6 +32,8 @@ const {addMoneyWallet,updateMongoWallet,sumWallet,sumWalletBuynow,walletPayment}
 const {validateCoupon}=require('../controllers/couponCtrl');
 const {invoice,invoices}=require('../controllers/invoiceCtrl');
 
+router.set('view engine','ejs');
+router.set('views','./views/users');
 
 
 // user---------------------------------------------------------------------------
