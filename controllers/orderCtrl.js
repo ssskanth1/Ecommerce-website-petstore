@@ -65,7 +65,7 @@ const checkOut=asyncHandler(async(req,res)=>{
           sum += user.cart[i].subTotal
       }
       sum = Math.round(sum * 100) / 100;
-      res.render('checkout',{user,product,sum,coupon,offer});
+      res.render('checkOut',{user,product,sum,coupon,offer});
 
 
   } catch (error) {
