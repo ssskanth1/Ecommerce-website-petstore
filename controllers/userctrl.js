@@ -148,7 +148,7 @@ const createUser=asyncHandler(async(req,res)=>{
          console.log('this is req.body  data',req.session.userData);
  
  
-         res.render("emailOTP",{email:req.body.email})
+         res.render("emailOtp",{email:req.body.email})
          console.log("Message sent: %s",info.messageId);
         } 
         else{
