@@ -28,6 +28,7 @@ const allProducts=asyncHandler(async(req,res)=>{
     } catch (error) {
 
         console.log("all products view error",error);
+        res.redirect('/error');
         
     }
 });
@@ -43,6 +44,7 @@ const addProduct = asyncHandler(async (req, res) => {
 
     } catch (error) {
         console.log('Error in addProduct function', error);
+        res.redirect('/error');
     }
 })
 
@@ -159,6 +161,7 @@ const createProduct = asyncHandler(async (req, res) => {
         }
     } catch (error) {
         console.log('Error happened in createProduct function', error);
+        res.redirect('/error');
           // Added error response
     }
 });
@@ -182,7 +185,7 @@ const editProduct = asyncHandler(async (req, res) => {
 
     } catch (error) {
         console.log('Error occurred in editProduct function', error);
-        res.status(500).send('Server Error'); // Send a suitable error response
+        res.render('errorPage') // Send a suitable error response
     }
 });
 
@@ -215,8 +218,7 @@ const productEdited = asyncHandler(async (req, res) => {
         res.redirect('/admin/product');
     } catch (error) {
         console.log('Error occurred in productEdited function', error);
-        res.status(500).send('Server Error');
-    }
+        res.redirect('/error');    }
 });
 
 
@@ -239,7 +241,7 @@ const aProductPage = asyncHandler(async (req, res) => {
 
     } catch (error) {
         console.log('Error occurred in product controller aProductPage function', error);
-        res.status(500).send('Server Error'); 
+        res.redirect('/error'); 
     }
 });
 
@@ -267,6 +269,7 @@ const shopProduct = asyncHandler(async (req, res) => {
     res.render('shop', { product, page, totalPages ,limit });
     } catch (error) {
         console.log('Error occured in shopProduct function', error);
+        res.redirect('/error');
     }
 });
 
@@ -295,6 +298,7 @@ const unlistProduct = asyncHandler(async (req, res) => {
     res.redirect('/admin/product');
     } catch (error) {
         console.log("error occured in unlistProduct function");
+        res.redirect('/error');
     }
 });
 
@@ -324,6 +328,7 @@ const listProduct = asyncHandler(async (req, res) => {
     res.redirect('/admin/product');
     } catch (error) {
         console.log("error occured in listProduct function");
+        res.redirect('/error');
     }
 });
 
@@ -340,6 +345,7 @@ const deleteProduct=asyncHandler(async(req,res)=>{
         res.redirect('/admin/product');
     } catch (error) {
       console.log("deleteProduct error");  
+      res.redirect('/error');
     }
 })
 
@@ -368,6 +374,7 @@ const productsSearch=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error happent in filter controller in ProductSearch funttion',error);
+        res.redirect('/error');
     }
 })
 
@@ -419,8 +426,7 @@ const productsSearch=asyncHandler(async(req,res)=>{
         res.redirect(`/admin/editProduct?id=${product._id}`)
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'An error occurred while deleting the element' });
-    }
+        res.redirect('/error');    }
   };
   //
   const deleteSingleImage = asyncHandler(async (req, res) => {
@@ -444,6 +450,7 @@ const productsSearch=asyncHandler(async(req,res)=>{
       res.redirect(`/admin/editProduct?id=${product._id}`);
     } catch (error) {
       console.log('Error occurred in categoryController deleteSingleImage function', error);
+      res.redirect('/error');
      
     }
   });

@@ -26,6 +26,7 @@ const getCart = asyncHandler(async(req,res)=>{
 
     } catch(error){
         console.log("error in getcart function",error);
+        res.redirect('/error');
     }
 })
 
@@ -69,6 +70,7 @@ const addToCart = asyncHandler(async(req,res)=>{
         res.json({status:true})
     } catch(error){
         console.log('error in addtocart fn',error);
+        res.redirect('/error');
     }
 })
 
@@ -111,7 +113,8 @@ const deleteCartItem = asyncHandler(async (req, res) => {
         }
     } catch (error) {
         console.log('error in deleteCartItem function', error);
-        return res.status(500).json({ status: false, message: 'Internal Server Error' });
+        //return res.status(500).json({ status: false, message: 'Internal Server Error' });
+        res.redirect('/error');
     }
 });
 
@@ -178,7 +181,8 @@ const modifyCartQuantity = asyncHandler(async (req, res) => {
 
     } }catch (error) {
         console.error('ERROR in cart ctrl modify cart quantity', error);
-        return res.status(500).json({ status: false, error: 'Server error' });
+        //return res.status(500).json({ status: false, error: 'Server error' });
+        res.redirect('/error');
     }
 });
 
@@ -205,6 +209,7 @@ const deleteCart = asyncHandler(async (req, res) => {
         }
     } catch (error) {
         console.log('error in cart ctrl function deleteCart', error);
+        res.redirect('/error');
     }
 });
 

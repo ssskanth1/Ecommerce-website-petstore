@@ -23,6 +23,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(cookieParser());
 
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
 app.use(session({
     secret:process.env.SESSION_SECRET_KEY,
@@ -39,9 +41,16 @@ app.use(session({
 
 app.use('/',userRouter);
 app.use('/admin',adminRouter);
+app.use('/error',(req,res)=>res.render('users/errorPage', { statuscode: 404, message: "Page not found" }))
 // app.use('/api/admin',adminRouter);
 
 
-app.listen(PORT,() => console.log("server is running"));
 
+// app.use('/*',(req,res)=>res.render('errorPage.ejs',{statuscode:404,message:"page not found"}))  
+
+app.use('*', (req, res) => res.render('users/errorPage', { statuscode: 404, message: "Page not found" }));
+
+
+app.listen(PORT,() => console.log("server is running"));   
+   
 

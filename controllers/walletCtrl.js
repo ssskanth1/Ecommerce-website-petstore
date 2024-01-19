@@ -35,7 +35,8 @@ const addMoneyWallet = asyncHandler(async (req, res) => {
     
     } catch (error) {
        console.log('Error hapence in the wallet ctrl in the funtion  addMoneyWallet',error);
-        res.status(500).json({ error: "Internal server error" });
+       res.redirect('/error'); 
+       //res.status(500).json({ error: "Internal server error" });
     }
 });
 
@@ -114,7 +115,8 @@ const updateMongoWallet = asyncHandler(async (req, res) => {
    
     } catch (error) {
         console.log('Error happened in the wallet ctrl in the function updateMongoWallet', error);
-        res.status(500).json({ message: 'An error occurred while updating the wallet', error });
+        res.redirect('/error');
+        // res.status(500).json({ message: 'An error occurred while updating the wallet', error });
     }
 });
 
@@ -160,7 +162,7 @@ const   sumWallet=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error happened in the wallet ctrl in the function sumWallet', error);
-        
+        res.redirect('/error');
     }
 });
 
@@ -195,7 +197,7 @@ const sumWalletBuynow= asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error happened in the wallet ctrl in the function sumWalletBuynow', error);
-        
+        res.redirect('/error');
     }
 })
 
@@ -208,7 +210,7 @@ const walletPayment=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('errro happemce in cart ctrl in function verifyPayment',error); 
-        
+        res.redirect('/error');
     }
 });
 

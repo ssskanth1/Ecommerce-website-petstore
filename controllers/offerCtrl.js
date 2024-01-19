@@ -29,6 +29,7 @@ const productOfferpage=asyncHandler(async(req,res)=>{
         res.render('productOffer',{product: currentproduct, totalpages, currentpage})
     } catch (error) {
         console.log('Error happence in the offerctrl in the funtion productOfferpage ')
+        res.redirect('/error');
     }
 })
 //---------------------------------------------------
@@ -61,7 +62,8 @@ const updateOffer = asyncHandler(async (req, res) => {
     } catch (error) {
         console.log('Error happened in the offerctrl in the function updateOffer:', error);
         // Handle the error appropriately, e.g., send an error response to the client
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.redirect('/error');
+        //res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
@@ -88,6 +90,7 @@ const categoryOffer= asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error happened in the offerctrl in the function categoryOffer:', error);
+        res.redirect('/error');
         
     }
 })
@@ -127,7 +130,8 @@ const updateCategoryOffer = asyncHandler(async (req, res) => {
     } catch (error) {
         console.log('Error happened in the offerctrl in the function updateCategoryOffer:', error);
         // Handle the error appropriately, e.g., send an error response to the client
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.redirect('/error');
+        // res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 //----------------------------------------------

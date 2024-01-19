@@ -28,6 +28,7 @@ if (order){
         
     } catch (error) {
         console.log('Error happens in invoice controller in the funtion invoice',error);
+        res.redirect('/error');
     }
 })
 
@@ -124,7 +125,8 @@ const invoices=async(req,res)=>{
             pdfStream.pipe(res);
           } catch (error) {
             console.log(error);
-            res.status(500).json({ error: error.message });
+            res.redirect('/error');
+            //res.status(500).json({ error: error.message });
           }
   }
   

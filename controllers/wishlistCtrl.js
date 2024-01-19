@@ -26,6 +26,7 @@ const productId=req.query.id
     }
     } catch (error) {
         console.log('Error happemce in the wishList ctrl in the function addToList',error);
+        res.redirect('/error');
     }
 });
 
@@ -57,6 +58,7 @@ const deleteWishlistItem = asyncHandler(async (req, res) => {
         }
     } catch (error) {
         console.log('Error occurred in the wishlist ctrl in the function deleteproduct', error);
+        res.redirect('/error');
       
     }
 });
@@ -83,6 +85,7 @@ const Wishlist=asyncHandler(async(req,res)=>{
  
     } catch (error) {
         console.log('Error occurred in the wishlist ctrl in the function deleteproduct', error);
+        res.redirect('/error');
         
     }
 });
@@ -94,4 +97,4 @@ module.exports={
     Wishlist,
     addToList,
     deleteWishlistItem
-}
+}            

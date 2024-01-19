@@ -48,6 +48,7 @@ const loadIndex = asyncHandler(async (req, res) => {
         }
     } catch (error) {
         console.log("Error happens in userController loadIndex function:", error);
+        res.redirect('/error');
     }
 });
 
@@ -62,6 +63,7 @@ const loginUser = async(req,res)=>{
         res.render('login',{message:""});
     } catch(error) {
         console.log("login user error");
+        res.redirect('/error');
     }
 }
 
@@ -71,6 +73,7 @@ const load=async(req,res)=>{
         
     } catch (error) {
         console.log("login user error",error);
+        res.redirect('/error');
     }
 }
 
@@ -92,6 +95,7 @@ const registerUser=async(req,res)=>{
         res.render('registration');
     } catch (error) {
         console.log(error.message);
+        res.redirect('/error');
     }
 }
 
@@ -162,6 +166,7 @@ const createUser=asyncHandler(async(req,res)=>{
      }
     } catch (error) {
      console.log("Create user error",error.message);
+     res.redirect('/error');
      
     }
 });
@@ -206,6 +211,7 @@ const createUser=asyncHandler(async(req,res)=>{
          }
      } catch (error) {
          console.log("error in resend otp function", error);
+         res.redirect('/error');
      }
 });
 
@@ -226,6 +232,7 @@ const createUser=asyncHandler(async(req,res)=>{
               "Error hapents in userControler forgotPsdPage  function :",
               error
           );
+          res.redirect('/error');
       }
   });
   
@@ -282,6 +289,7 @@ const createUser=asyncHandler(async(req,res)=>{
               "Error happens in userControler forgotEmailValid function:",
               error
           );
+          res.redirect('/error');
       }
   });
   
@@ -302,6 +310,7 @@ const createUser=asyncHandler(async(req,res)=>{
               "Error hapents in userControler forgotPsdOTP  function :",
               error
           );
+          res.redirect('/error');
       }
   });
   
@@ -329,6 +338,7 @@ const createUser=asyncHandler(async(req,res)=>{
               "Error hapents in userControler updatePassword  function :",
               error
           );
+          res.redirect('/error');
       }
   });
   
@@ -359,6 +369,7 @@ const verifyUser=asyncHandler(async(req,res)=>{
         }
     } catch (error) {
         console.log("Error hapents in userControler userLogin function :", error);
+        res.redirect('/error');
        
     }
 })
@@ -422,6 +433,7 @@ console.log('this is the session otp',req.session.userOTP);
     }
 } catch (error) {
     console.log("user email verification error",error);
+    res.redirect('/error');
     
 }
 }
@@ -433,7 +445,8 @@ try {
     });
 } catch (error) {
     console.error("Error during logout:", error);
-    res.status(500).send('Internal Server Error');
+    //res.status(500).send('Internal Server Error');
+    res.redirect('/error');
 }
 });
 
@@ -446,6 +459,7 @@ const userLogout = async (req, res) => {
         res.redirect("/login");
     } catch (error) {
         console.log("Error happens in userControler userLogout function:", error);
+        res.redirect('/error');
        
     }
 };
@@ -463,6 +477,7 @@ const userProfile=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log("user controller userProfile error",error);
+        res.redirect('/error');
     }
 
 
@@ -480,6 +495,7 @@ const editProfile=asyncHandler(async(req,res)=>{
 
     } catch (error) {
         console.log("error in user editProfile function");
+        res.redirect('/error');
     }
 });
 
@@ -511,6 +527,7 @@ const updateProfile=asyncHandler(async(req,res)=>{
 
     } catch (error) {
         console.log("error in upadate user function",error);
+        res.redirect('/error');
     }
 });
 
@@ -542,7 +559,8 @@ const addProfilePic = asyncHandler(async (req, res) => {
         res.redirect('/profile');
     } catch (error) {
         console.error("Error in addProfilePic function:", error);
-        res.status(500).send({ message: 'Internal server error.' });
+       // res.status(500).send({ message: 'Internal server error.' });
+       res.redirect('/error');
     }
 });
 
@@ -565,6 +583,7 @@ const addUserAddress=asyncHandler(async(req,res)=>{
 
     } catch (error) {
         console.log("error in addUserAddress function",error);
+        res.redirect('/error');
     }
 });
 
@@ -580,7 +599,7 @@ const editAddress=asyncHandler(async(req,res)=>{
         res.render('editAddress',{address});
 
     } catch (error) {
-        
+        res.redirect('/error');
     }
 })
 
@@ -619,6 +638,7 @@ const updateAddress=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log("error in update address function",error);
+        res.redirect('/error');
     }
 })
 
@@ -644,6 +664,7 @@ const deleteAddress=asyncHandler(async(req,res)=>{
 
     } catch (error) {
         console.log("error in deleteAddress function",error);
+        res.redirect('/error');
     }
 })
 
@@ -659,6 +680,7 @@ const profile=asyncHandler(async(req,res)=>{
         res.render('profile',{user,order})
     } catch (error) {
         console.log("error in profile function",error);
+        res.redirect('/error');
     }
 })
 

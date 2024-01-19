@@ -39,6 +39,7 @@ const addCategory=asyncHandler(async(req,res)=>{
             }
     } catch (error) {
         console.log("add category error",error);
+        res.redirect('/error');
         
     }
 })
@@ -87,6 +88,7 @@ const allCategory=asyncHandler(async(req,res)=>{
         res.render('category',({category:allCategory}));
       } catch (error) {
         console.log(" this is all catogary error",error);
+        res.redirect('/error');
       }
 })
 
@@ -107,6 +109,7 @@ const editCategory=asyncHandler(async(req,res)=>{
 
     } catch (error) {
         console.log('error happens in catogaryController editCatogary function', error);
+        res.redirect('/error');
     }
 })
 
@@ -238,6 +241,7 @@ const updateCategory=asyncHandler(async(req,res)=>{
         res.redirect('/admin/category');
     } catch (error) {
         console.log("update category error");
+        res.redirect('/error');
     }
 
 });
@@ -257,6 +261,7 @@ const deleteCategory=asyncHandler(async(req,res)=>{
        }
     } catch (error) {
         console.log("delete category error",error);
+        res.redirect('/error');
     }
 })
 
@@ -269,6 +274,7 @@ const unlistCategory=asyncHandler(async(req,res)=>{
         res.redirect('/admin/category');
     } catch (error) {
         console.log("unlist category error");
+        res.redirect('/error');
     }
 });
 
@@ -281,6 +287,7 @@ const listCategory=asyncHandler(async(req,res)=>{
     res.redirect('/admin/category');
     } catch (error) {
        console.log("list category error"); 
+       res.redirect('/error');
     }
 
     

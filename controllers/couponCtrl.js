@@ -14,6 +14,7 @@ const loadCoupon=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error happens in the coupon controller in the function loadCoupon',error);
+        res.redirect('/error');
     }
 });
 
@@ -40,6 +41,7 @@ const coupon=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error happence in the coupon controller in the funtion coupon',error);
+        res.redirect('/error');
         
     }
 });
@@ -81,6 +83,7 @@ const addCoupon = asyncHandler(async (req, res) => {
         res.redirect('/admin/coupon');
     } catch (error) {
         console.log('Error happened in the coupon controller in the function addCoupon', error);
+        res.redirect('/error');
     }
   });
 
@@ -97,6 +100,7 @@ const addCoupon = asyncHandler(async (req, res) => {
         
     } catch (error) {
         console.log('Error happence in the coupon controller in the funtion editCoupon',error);
+        res.redirect('/error');
         
     }
 })
@@ -147,6 +151,7 @@ const updateCoupon = asyncHandler(async (req, res) => {
       res.redirect('/admin/coupon');
     } catch (error) {
       console.log('Error happened in the coupon controller in the function editCoupon', error);
+      res.redirect('/error');
     }
   });
 
@@ -167,6 +172,7 @@ const updateCoupon = asyncHandler(async (req, res) => {
 
     } catch (error) {
         console.log('Error happence in the coupon controller in the funtion deleteCoupon',error);
+        res.redirect('/error');
         
     }
 });
@@ -255,10 +261,11 @@ const validateCoupon = asyncHandler(async (req, res) => {
 
   } catch (error) {
     console.log('Error happened in the coupon controller in the function validateCoupon', error);
-    res.status(500).json({
-      isValid: false,
-      error: 'An error occurred while processing your request',
-    });
+    // res.status(500).json({
+    //   isValid: false,
+    //   error: 'An error occurred while processing your request',
+    // });
+    res.redirect('/error');
   }
 });
 

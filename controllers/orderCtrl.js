@@ -70,6 +70,7 @@ const checkOut=asyncHandler(async(req,res)=>{
 
   } catch (error) {
       console.log("error in checkout function");
+      res.redirect('/error');
   }
 })
 
@@ -85,6 +86,7 @@ const orderPage = asyncHandler(async (req, res) => {
 
     } catch (error) {
         console.log('Error form order Ctrl in the function orderPage', error);
+        res.redirect('/error');
     }
 })
 
@@ -193,6 +195,7 @@ const orderPlaced=asyncHandler(async(req,res)=>{
       
      }catch (error) {
         console.log('Error form order Ctrl in the function orderPlaced', error);
+        res.redirect('/error');
                 
      }
    });
@@ -215,6 +218,7 @@ const orderDetails=asyncHandler(async(req,res)=>{
 
     } catch (error) {
         console.log('errro happemce in cart ctrl in function orderDetails',error); 
+        res.redirect('/error');
         
     }
 })
@@ -242,7 +246,8 @@ const allOrderDetails = asyncHandler(async (req, res) => {
         res.render('orderList',{ orders:currentproduct,totalpages,currentpage ,user});
     } catch (error) {
         console.log('Error from orderCtrl in the function allOrderDetails', error);
-        res.status(500).json({ status: false, error: 'Server error' });
+        res.redirect('/error');
+        //res.status(500).json({ status: false, error: 'Server error' });
     }
 });
 
@@ -349,8 +354,8 @@ const cancelOrder = asyncHandler(async (req, res) => {
     res.redirect('/allOrderDetails');
   } catch (error) {
     console.log('Error occurred in cart ctrl in function canselOrder', error);
-    
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.redirect('/error');
+    //res.status(500).json({ message: 'Internal Server Error' });
   }
 
 
@@ -526,8 +531,8 @@ const cancelOrder = asyncHandler(async (req, res) => {
       return res.json({status:true});
     } catch (error) {
       console.log('Error occurred in returnOrder function:', error);
-     
-      res.status(500).json({ message: 'Internal Server Error' });
+      res.redirect('/error');
+      //res.status(500).json({ message: 'Internal Server Error' });
     }
   });
 
@@ -551,6 +556,7 @@ const adminOrderList=asyncHandler(async(req,res)=>{
     res.render('orderList',{orders:currentproduct,totalpages,currentpage})
   } catch (error) {
     console.log("error in adminOrderlist function",error);
+    res.redirect('/error');
   }
 })
 
@@ -566,6 +572,7 @@ const adminOrderDetails=asyncHandler(async(req,res)=>{
     res.render('orderDetails',{user,order});
   } catch (error) {
     console.log("error in adminOrderDetails function",error);
+    res.redirect('/error');
   }
 })
 
@@ -582,6 +589,7 @@ const changeStatusPending=asyncHandler(async(req,res)=>{
 
   } catch (error) {
     console.log("error in changestatusPending function",error);
+    res.redirect('/error');
   }
 });
 
@@ -599,6 +607,7 @@ const changeStatusConfirmed=asyncHandler(async(req,res)=>{
 
   } catch (error) {
     console.log("error in changestatusPending function",error);
+    res.redirect('/error');
   }
 });
 
@@ -616,6 +625,7 @@ const changeStatusShipped=asyncHandler(async(req,res)=>{
 
   } catch (error) {
     console.log("error in changestatusPending function",error);
+    res.redirect('/error');
   }
 });
 
@@ -632,6 +642,7 @@ const changeStatusCanceled=asyncHandler(async(req,res)=>{
 
   } catch (error) {
     console.log("error in changestatusPending function",error);
+    res.redirect('/error');
   }
 });
 
@@ -649,6 +660,7 @@ const changeStatusDelivered=asyncHandler(async(req,res)=>{
 
   } catch (error) {
     console.log("error in changestatusPending function",error);
+    res.redirect('/error');
   }
 });
 
@@ -666,6 +678,7 @@ const changeStatusReturned=asyncHandler(async(req,res)=>{
 
   } catch (error) {
     console.log("error in changestatusPending function",error);
+    res.redirect('/error');
   }
 });
 
@@ -682,6 +695,7 @@ const changeStatusReturnRejected=asyncHandler(async(req,res)=>{
 
   } catch (error) {
     console.log("error in changestatusPending function",error);
+    res.redirect('/error');
   }
 });
 
@@ -728,6 +742,7 @@ const verifyPayment=asyncHandler(async(req,res)=>{
       
   } catch (error) {
       console.log('errro happemce in order ctrl in function verifyPayment',error); 
+      res.redirect('/error');
       
   }
 });
@@ -774,6 +789,7 @@ const useWallet=asyncHandler(async(req,res)=>{
       } 
   } catch (error) {
       console.log('error in function useWallet',error); 
+      res.redirect('/error');
       
   }
 })
@@ -799,6 +815,7 @@ const loadsalesReport=asyncHandler(async(req,res)=>{
       
   } catch (error) {
       console.log('errro happens in cart ctrl in function loadsalesReport',error); 
+      res.redirect('/error');
       
   }
 });
@@ -1383,7 +1400,8 @@ const salesReport = asyncHandler(async (req, res) => {
   } catch (error) {
     console.log('Error occurred in salesReport route:', error);
     // Handle errors and send an appropriate response
-    res.status(500).json({ error: 'An error occurred' });
+    res.redirect('/error');
+    //res.status(500).json({ error: 'An error occurred' });
   }
 });
 
@@ -1418,6 +1436,7 @@ const buyNOw=asyncHandler(async(req,res)=>{
 
   } catch (error) {
       console.log('Error occurred in orderCTrl buyNOw:', error);
+      res.redirect('/error');
       
   }
 
@@ -1511,6 +1530,7 @@ const buynowPlaceOrder=asyncHandler(async(req,res)=>{
 
   } catch (error) {
       console.log('Error form oder Ctrl in the function buy now ', error);
+      res.redirect('/error');
       
   }
   

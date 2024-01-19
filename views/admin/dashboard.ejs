@@ -36,7 +36,7 @@
                     <div class="text">
                         <h6 class="mb-1 card-title">Revenue</h6>
                         <span>
-                            <%= totalRevenue %>
+                            ₹ <%= totalRevenue %>
                         </span>
                         <span class="text-sm">
                             Shipping fees are not included
@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="media-body">
                                             <div>
-                                                <%= order.status %>: - <%= order.totalPrice %>
+                                                <%= order.status %>: ₹ <%= order.totalPrice %>
                                             </div>
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@
                                         </div>
                                         <div class="media-body">
                                             <div>
-                                                <%= order.status %>: <%= order.totalPrice %>
+                                                <%= order.status %>: ₹ <%= order.totalPrice %>
                                             </div>
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@
 
         function submitForm() {
             document.getElementById('filterForm').submit();
-        }
+        }  
     </script>
     <script>
         

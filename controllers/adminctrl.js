@@ -284,8 +284,8 @@ console.log('thsi is customDateSalesArray',customDateSalesArray);
     } catch (error) {
         console.log('Error happens in the admin Ctrl admindashboard function', error);
 
-        res.status(500).send('Internal server error')
-
+        //res.status(500).send('Internal server error')
+        res.redirect('/error');
     }
 })
 
@@ -331,6 +331,7 @@ const adminVerifyLogin = asyncHandler(async(req,res)=>{
     }
     } catch (error) {
         console.log("this is adminVerify error",error)
+        res.redirect('/error');
     }
 });
 
@@ -358,6 +359,7 @@ const userField = asyncHandler(async(req,res)=>{
         }
         } catch (error){
             console.log("user field error in dashboard",error);
+            res.redirect('/error');
 
         
          } }
@@ -376,6 +378,7 @@ const blockUser = asyncHandler(async(req,res)=>{
         }
     } catch (error) {
         console.log("block user error");
+        res.redirect('/error');
     }
 })
 
@@ -391,6 +394,7 @@ const unblockUser = asyncHandler(async (req,res)=>{
         }
         } catch (error) {
             console.log("error in unblock user",error);
+            res.redirect('/error');
     }
 })
 
@@ -401,6 +405,7 @@ const logout = asyncHandler(async(req,res)=>{
         res.redirect('/admin/login')
     } catch (error) {
         console.log('Error in logout admin',error);
+        res.redirect('/error');
 
     }
 })

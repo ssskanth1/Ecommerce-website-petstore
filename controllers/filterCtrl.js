@@ -55,6 +55,7 @@ const filterSearch=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error in filter controller in filterSearch funtion',error);
+        res.redirect('/error');
     }
 })
 
@@ -80,6 +81,7 @@ const sizeFilter=asyncHandler(async(req,res)=>{
         res.render('filter',{product:currentproduct, totalpages,currentpage,cat,user})       
     } catch (error) {
         console.log('Error happened in filter controller in sizefilter funtion',error);
+        res.redirect('/error');
         
     }
 });
@@ -110,6 +112,7 @@ const priceFilter=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error in filter controller in pricefilter funtion',error);
+        res.redirect('/error');
         
     }
 });
@@ -136,7 +139,7 @@ const brandFilter=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error  in filter controller in brandfilter funtion',error);
-        
+        res.redirect('/error');
     }
 })
 
@@ -164,7 +167,7 @@ const CategoryFilter=asyncHandler(async(req,res)=>{
 
     } catch (error) {
         console.log('Error happent in filter controller in CategoryFilter funtion',error);
-        
+        res.redirect('/error');
     }
 })
 
@@ -188,7 +191,7 @@ const clearFilter = asyncHandler(async(req,res)=>{
        
     } catch (error) {
        console.log('Error happent in filter controller in clearFilter funtion',error);
-       
+       res.redirect('/error');
     }
    })
    
@@ -225,6 +228,7 @@ const sortByPrice=asyncHandler(async(req,res)=>{
       res.render('filter', { product: currentproduct, totalpages, currentpage,cat,user });
     } catch (error) {
       console.log('Error happened in filter controller in sortByPrice function', error);
+      res.redirect('/error');
     }
   });
    
@@ -255,6 +259,7 @@ const productSearch=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error happened in filter controller in ProductSearch function',error);
+        res.redirect('/error');
     }
 })
 

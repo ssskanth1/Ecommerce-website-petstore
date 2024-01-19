@@ -22,6 +22,7 @@ const banner=asyncHandler(async(req,res)=>{
         
     } catch (error) {
         console.log('Error from the banner ctrl in the funtion banner',error);
+        res.redirect('/error');
     }
 })
 
@@ -32,6 +33,7 @@ const addNewBanner=asyncHandler(async(req,res)=>{
         res.render('addBanner')
     } catch (error) {
         console.log("error in addnew banner function",error);
+        res.redirect('/error');
         
     }
     
@@ -61,6 +63,7 @@ const createBanner=asyncHandler(async(req,res)=>{
         
     }catch(error){
         console.log("error in create banner function",error);
+        res.redirect('/error');
         }
     });
 
@@ -81,6 +84,7 @@ const createBanner=asyncHandler(async(req,res)=>{
             
         } catch (error) {
             console.log('Error from the banner ctrl in the funtion editBanner',error);
+            res.redirect('/error');
             
         }
     });
@@ -115,7 +119,7 @@ const createBanner=asyncHandler(async(req,res)=>{
         }
     } catch (error) {
         console.log('Error from the banner ctrl in the funtion updateBanner',error);
-        
+        res.redirect('/error');
     }
 })
 
@@ -141,6 +145,7 @@ if(banner){
 
     } catch (error) {
         console.log('Error from the banner ctrl in the funtion updateBanner',error);
+        res.redirect('/error');
         
     }
 });
